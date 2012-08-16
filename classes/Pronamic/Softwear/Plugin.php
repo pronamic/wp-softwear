@@ -145,13 +145,6 @@ class Pronamic_Softwear_Plugin {
 		include plugin_dir_path( self::$file ) . '/admin/synchronization.php';
 	}
 
-	/**
-	 * Options page
-	 */
-	public static function optionsPage() {
-		include plugin_dir_path(self::$file) . '/admin/options.php';
-	}
-
 	//////////////////////////////////////////////////
 
 	/**
