@@ -15,7 +15,7 @@ class Pronamic_Softwear_Softwear {
 	 * @param string $url
 	 * @return array
 	 */
-	public static function getDataFromUrl($url) {
+	public static function get_data_from_url( $url ) {
 		$data = false;
 		
 		// Get URL

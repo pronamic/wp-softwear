@@ -152,10 +152,10 @@ class Pronamic_Softwear_Plugin {
 	 * 
 	 * @return array
 	 */
-	public static function getData() {
-		$url = get_option('softwear_datafeed_url');
+	public static function get_data() {
+		$url = get_option( 'softwear_datafeed_url' );
 
-		return Pronamic_Softwear_Softwear::getDataFromUrl($url);
+		return Pronamic_Softwear_Softwear::get_data_from_url( $url );
 	}
 
 	//////////////////////////////////////////////////
@@ -165,10 +165,10 @@ class Pronamic_Softwear_Plugin {
 	 * 
 	 * @return array
 	 */
-	public static function getDataMap() {
-		$dataMap = get_option('softwear_datafeed_map', array());
+	public static function get_data_map() {
+		$data_map = get_option( 'softwear_datafeed_map', array() );
 
-		return $dataMap;
+		return $data_map;
 	}
 
 	//////////////////////////////////////////////////

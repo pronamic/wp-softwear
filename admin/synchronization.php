@@ -12,10 +12,10 @@ global $woocommerce;
 
 	<?php 
 
-	$map = Pronamic_Softwear_Plugin::getDataMap();
+	$map = Pronamic_Softwear_Plugin::get_data_map();
 	$map = array_flip($map);
 
-	$data = Pronamic_Softwear_Plugin::getData();
+	$data = Pronamic_Softwear_Plugin::get_data();
 
 	if($data !== false): ?>
 
