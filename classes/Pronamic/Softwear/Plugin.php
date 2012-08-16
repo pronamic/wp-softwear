@@ -21,15 +21,15 @@ class Pronamic_Softwear_Plugin {
 	/**
 	 * Bootstrap
 	 */
-	public static function bootstrap($file) {
+	public static function bootstrap( $file ) {
 		self::$file = $file;
 
-		add_action('init', array(__CLASS__, 'init'));
+		add_action( 'init', array( __CLASS__, 'init' ) );
 
-		add_action('admin_init', array(__CLASS__, 'adminInit'));
-		add_action('admin_menu', array(__CLASS__, 'adminMenu'));
+		add_action( 'admin_init', array( __CLASS__, 'adminInit' ) );
+		add_action( 'admin_menu', array( __CLASS__, 'adminMenu' ) );
 		
-		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueueAdminScripts'));
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueAdminScripts' ) );
 	}
 
 	//////////////////////////////////////////////////
@@ -39,8 +39,8 @@ class Pronamic_Softwear_Plugin {
 	 */
 	public static function init() {
 		// Translations
-		$relPath = dirname(plugin_basename(self::$file)) . '/languages/';
-		load_plugin_textdomain('softwear', false, $relPath);
+		$rel_path = dirname( plugin_basename( self::$file ) ) . '/languages/';
+		load_plugin_textdomain( 'softwear', false, $rel_path );
 	}
 
 	//////////////////////////////////////////////////
@@ -49,9 +49,9 @@ class Pronamic_Softwear_Plugin {
 	 * Admin initialize
 	 */
 	public static function adminInit() {
-		register_setting('softwear', 'softwear_uuid');
-		register_setting('softwear', 'softwear_datafeed_url');
-		register_setting('softwear', 'softwear_datafeed_map');
+		register_setting( 'softwear', 'softwear_uuid' );
+		register_setting( 'softwear', 'softwear_datafeed_url' );
+		register_setting( 'softwear', 'softwear_datafeed_map' );
 	}
 
 	//////////////////////////////////////////////////
@@ -79,30 +79,30 @@ class Pronamic_Softwear_Plugin {
 	public static function adminMenu() {
 		// Menu
 		add_menu_page(
-			$pageTitle = __('Softwear', 'softwear') , 
-			$menuTitle = __('Softwear', 'softwear') , 
+			$pageTitle = __( 'Softwear', 'softwear' ) , 
+			$menuTitle = __( 'Softwear', 'softwear' ) , 
 			$capability = 'administrator' , 
 			$menuSlug = 'softwear' , 
-			$function = array(__CLASS__, 'pageIndex') , 
-			$iconUrl = plugins_url('images/icon-16x16.png', self::$file)
+			$function = array( __CLASS__, 'pageIndex' ) , 
+			$iconUrl = plugins_url( 'images/icon-16x16.png', self::$file )
 		);
 
 		add_submenu_page(
 			$parentSlug = 'softwear' , 
-			$pageTitle = __('Softwear Datafeed', 'softwear') , 
-			$menuTitle = __('Datafeed', 'softwear') , 
+			$pageTitle = __( 'Softwear Datafeed', 'softwear' ) , 
+			$menuTitle = __( 'Datafeed', 'softwear' ) , 
 			$capability = 'administrator' , 
 			$menuSlug = 'softwear_datafeed' , 
-			$function = array(__CLASS__, 'pageDatafeed')
+			$function = array( __CLASS__, 'pageDatafeed' )
 		);
 
 		add_submenu_page(
 			$parentSlug = 'softwear' , 
-			$pageTitle = __('Softwear Synchronization', 'softwear') , 
-			$menuTitle = __('Synchronization', 'softwear') , 
+			$pageTitle = __( 'Softwear Synchronization', 'softwear' ) , 
+			$menuTitle = __( 'Synchronization', 'softwear' ) , 
 			$capability = 'administrator' , 
 			$menuSlug = 'softwear_synchronization' , 
-			$function = array(__CLASS__, 'pageSynchronization')
+			$function = array( __CLASS__, 'pageSynchronization' )
 		);
 
 		// Rename first Softwear submenu item
