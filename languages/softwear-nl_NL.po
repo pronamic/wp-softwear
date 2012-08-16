@@ -1,0 +1,233 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Softwear\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-13 11:51+0100\n"
+"PO-Revision-Date: 2012-06-13 11:51+0100\n"
+"Last-Translator: Remco Tolsma <remco@pronamic.nl>\n"
+"Language-Team: Pronamic <info@pronamic.nl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;_e;__\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: NETHERLANDS\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/index.php:5
+#: admin/options.php:5
+#: admin/options-backup.php:5
+#: classes/Pronamic/Softwear/Plugin.php:82
+#: classes/Pronamic/Softwear/Plugin.php:83
+#: classes/Pronamic/Softwear/Plugin.php:117
+#: classes/Pronamic/Softwear/Plugin.php:118
+msgid "Softwear"
+msgstr "Softwear"
+
+#: admin/index.php:9
+#: classes/Pronamic/Softwear/Plugin.php:112
+msgid "Settings"
+msgstr "Instellingen"
+
+#: admin/index.php:19
+#: admin/options-backup.php:15
+msgid "UUID"
+msgstr "UUID"
+
+#: admin/index.php:26
+#: admin/options-backup.php:22
+msgid "For example: <code>1660-8920-F99A-11E0-BE50-0800-200C-9A66</code>"
+msgstr "Bijvoorbeeld: <code>1660-8920-F99A-11E0-BE50-0800-200C-9A66</code>"
+
+#: admin/index.php:27
+#: admin/options-backup.php:23
+msgid "The API uses a token for identification. If an API has been setup for a Softwear instance, a token will be provided."
+msgstr "De API gebruikt een token voor indentificatie. Als een API is geconfigureerd voor een Softwear instantie zal een token verstrekt worden."
+
+#: admin/index.php:33
+msgid "Articles Datafeed URL"
+msgstr "Artikelen datafeed URL"
+
+#: admin/index.php:39
+#: admin/options-backup.php:35
+msgid "For example: <code>http://www.softwear.nl/ism/bebees/osws.csv</code>"
+msgstr "Bijvoorbeeld: <code>http://www.softwear.nl/ism/bebees/osws.csv</code>"
+
+#: admin/index.php:40
+#: admin/options-backup.php:36
+msgid "Datafeeds are available for article information and client information. Datafeeds are refreshed automatically every 24 hrs. All datafeeds are in CSV format. The content of the datafeeds can vary per project, for more information contact Softwear at <a href=\"mailto:info@softwear.nl\">info@softwear.nl</a> or <a href=\"tel:0900-SOFTWEAR\">0900-SOFTWEAR</a>."
+msgstr "Datafeeds zijn beschikbaar voor artikel en klant informatie. Datafeeds worden elke 24 uur automatisch vernieuwd. Alle datafeeds zijn CSV formaat. De inhoud van de datafeeds kunnen varieëren per project, voor meer informatie neem contact op met Softwear via <a href=\"mailto:info@softwear.nl\">info@softwear.nl</a> of <a href=\"tel:0900-SOFTWEAR\">0900-SOFTWEAR</a>."
+
+#: admin/index.php:55
+#: admin/options-backup.php:53
+#: classes/Pronamic/Softwear/Plugin.php:93
+msgid "Datafeed"
+msgstr "Datafeed"
+
+#: admin/index.php:64
+#: admin/options-backup.php:62
+msgid "First Row"
+msgstr "Eerste rij"
+
+#: admin/index.php:65
+#: admin/options-backup.php:63
+msgid "CSV » WooCommerce"
+msgstr "CSV » WooCommerce"
+
+#: admin/index.php:66
+msgid "Variation Attribute"
+msgstr "Variatie attribuut"
+
+#: admin/index.php:67
+#: admin/options-backup.php:64
+msgid "Second Row"
+msgstr "Tweede rij"
+
+#: admin/index.php:80
+#: admin/synchronization.php:27
+#: admin/options-backup.php:77
+msgid "Title"
+msgstr "Titel"
+
+#: admin/index.php:83
+#: admin/options-backup.php:80
+msgid "SKU (parent)"
+msgstr "SKU (hoofd)"
+
+#: admin/index.php:84
+#: admin/options-backup.php:81
+msgid "SKU (variation)"
+msgstr "SKU (variatie)"
+
+#: admin/index.php:85
+#: admin/synchronization.php:30
+#: admin/options-backup.php:82
+msgid "Stock"
+msgstr "Voorraad"
+
+#: admin/index.php:86
+#: admin/synchronization.php:29
+#: admin/options-backup.php:83
+msgid "Price"
+msgstr "Prijs"
+
+#: admin/index.php:145
+#: admin/options.php:186
+#: admin/options-backup.php:432
+msgid "Documentation"
+msgstr "Documentatie"
+
+#: admin/datafeed.php:5
+#: classes/Pronamic/Softwear/Plugin.php:92
+msgid "Softwear Datafeed"
+msgstr "Softwear datafeed"
+
+#: admin/datafeed.php:18
+#, php-format
+msgid "The Softwear datafeed could not be loaded from the URL: %s"
+msgstr "De Softwear datafeed kon niet worden geladen vanaf de URL: %s"
+
+#: admin/synchronization.php:5
+#: classes/Pronamic/Softwear/Plugin.php:101
+msgid "Softwear Synchronization"
+msgstr "Softwear synchronisatie"
+
+#: admin/synchronization.php:26
+msgid "SKU"
+msgstr "SKU"
+
+#: admin/synchronization.php:28
+msgid "ID"
+msgstr "ID"
+
+#: admin/synchronization.php:31
+msgid "Synced"
+msgstr "Gesynchroniseerd"
+
+#: admin/synchronization.php:66
+#: admin/synchronization.php:110
+msgid "Yes"
+msgstr "Ja"
+
+#: admin/synchronization.php:68
+#: admin/synchronization.php:112
+msgid "No"
+msgstr "Nee"
+
+#: admin/options.php:54
+#: admin/options.php:113
+#: admin/options-backup.php:184
+#: admin/options-backup.php:282
+msgid "Synchronize"
+msgstr "Synchroniseer"
+
+#: admin/options-backup.php:29
+msgid "Datafeed URL"
+msgstr "Datafeed URL"
+
+#: admin/options-backup.php:298
+msgid "Product"
+msgstr "Product"
+
+#: classes/Pronamic/Softwear/Plugin.php:102
+msgid "Synchronization"
+msgstr "Synchronisatie"
+
+#: classes/Pronamic/Softwear/WooCommerce/ProductVariation.php:39
+#, php-format
+msgid "Variation #%s of %s"
+msgstr "Variatie #%s van %s"
+
+#~ msgid "Softwear Synchronize"
+#~ msgstr "Softwear synchronisatie"
+
+#~ msgid "Product Name"
+#~ msgstr "Product naam"
+
+#~ msgid "Parent SKU"
+#~ msgstr "Bovenliggende SKU"
+
+#~ msgid "Shop ID"
+#~ msgstr "Winkel ID"
+
+#~ msgid "Softwear Connect Settings"
+#~ msgstr "Softwear Connect Instellingen"
+
+#~ msgid "Softwear Connect Custom Interval"
+#~ msgstr "Softwear Connect Aangepast Interval"
+
+#~ msgid "Your shop's ID as received from Softwear"
+#~ msgstr "Uw winkels ID zoals geregistreerd bij Softwear"
+
+#~ msgid "Update Rate"
+#~ msgstr "Update Snelheid"
+
+#~ msgid ""
+#~ "Number of seconds between each synchronization with the shop's stock "
+#~ "database"
+#~ msgstr ""
+#~ "Aantal seconden tussen elke synchronisatie met de winkels voorraad "
+#~ "database"
+
+#~ msgid "Color Code Attribute"
+#~ msgstr "Kleurcode attribuut"
+
+#~ msgid ""
+#~ "The name in this field must match the slugname of the color code "
+#~ "attribute defined in the shop's attribute settings."
+#~ msgstr ""
+#~ "De naam in dit veld moet overeenkomen met de slugnaam van de kleurcode "
+#~ "die gedefiniëerd is in uw winkels attribuut instellingen"
+
+#~ msgid ""
+#~ "The name in this field must match the slugname of the size attribute "
+#~ "defined in the shop's attribute settings."
+#~ msgstr ""
+#~ "De naam in dit veld moet overeenkomen met de slugnaam van de maat die "
+#~ "gedefiniëerd is in uw winkels attribuut instellingen"
+
+#~ msgid "Connect to shop"
+#~ msgstr "Verbinding maken met de voorraad database"
