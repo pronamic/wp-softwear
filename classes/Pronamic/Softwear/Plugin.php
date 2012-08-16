@@ -26,10 +26,10 @@ class Pronamic_Softwear_Plugin {
 
 		add_action( 'init', array( __CLASS__, 'init' ) );
 
-		add_action( 'admin_init', array( __CLASS__, 'adminInit' ) );
-		add_action( 'admin_menu', array( __CLASS__, 'adminMenu' ) );
+		add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
+		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
 		
-		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueueAdminScripts' ) );
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
 	}
 
 	//////////////////////////////////////////////////
@@ -48,7 +48,7 @@ class Pronamic_Softwear_Plugin {
 	/**
 	 * Admin initialize
 	 */
-	public static function adminInit() {
+	public static function admin_init() {
 		register_setting( 'softwear', 'softwear_uuid' );
 		register_setting( 'softwear', 'softwear_datafeed_url' );
 		register_setting( 'softwear', 'softwear_datafeed_map' );
@@ -59,14 +59,14 @@ class Pronamic_Softwear_Plugin {
 	/**
 	 * Enqueue admin scripts
 	 */
-	public static function enqueueAdminScripts($hook) {
-		$isSoftwear = strpos($hook, 'softwear') !== false;
+	public static function admin_enqueue_scripts( $hook ) {
+		$is_softwear = strpos( $hook, 'softwear' ) !== false;
 
-		if($isSoftwear) {
+		if ( $is_softwear ) {
 			// Styles
 			wp_enqueue_style(
 				'softwear_admin' , 
-				plugins_url('css/admin.css', self::$file)
+				plugins_url( 'css/admin.css', self::$file )
 			);
 		}
 	}
@@ -76,14 +76,14 @@ class Pronamic_Softwear_Plugin {
 	/**
 	 * Adds an extra settings page to the WordPress admin's settings board.
 	 */
-	public static function adminMenu() {
+	public static function admin_menu() {
 		// Menu
 		add_menu_page(
 			$pageTitle = __( 'Softwear', 'softwear' ) , 
 			$menuTitle = __( 'Softwear', 'softwear' ) , 
 			$capability = 'administrator' , 
 			$menuSlug = 'softwear' , 
-			$function = array( __CLASS__, 'pageIndex' ) , 
+			$function = array( __CLASS__, 'page_index' ) , 
 			$iconUrl = plugins_url( 'images/icon-16x16.png', self::$file )
 		);
 
@@ -93,7 +93,7 @@ class Pronamic_Softwear_Plugin {
 			$menuTitle = __( 'Datafeed', 'softwear' ) , 
 			$capability = 'administrator' , 
 			$menuSlug = 'softwear_datafeed' , 
-			$function = array( __CLASS__, 'pageDatafeed' )
+			$function = array( __CLASS__, 'page_datafeed' )
 		);
 
 		add_submenu_page(
@@ -102,23 +102,23 @@ class Pronamic_Softwear_Plugin {
 			$menuTitle = __( 'Synchronization', 'softwear' ) , 
 			$capability = 'administrator' , 
 			$menuSlug = 'softwear_synchronization' , 
-			$function = array( __CLASS__, 'pageSynchronization' )
+			$function = array( __CLASS__, 'page_synchronization' )
 		);
 
 		// Rename first Softwear submenu item
 		global $submenu;
 
-		if(isset($submenu['softwear'])) {
-			$submenu['softwear'][0][0] = __('Settings', 'softwear');
+		if ( isset( $submenu['softwear'] ) ) {
+			$submenu['softwear'][0][0] = __( 'Settings', 'softwear' );
 		}
 
 		// Options page
 		add_options_page(
-			$pageTitle = __('Softwear', 'softwear') ,
-			$menuTitle = __('Softwear', 'softwear') ,
+			$pageTitle = __( 'Softwear', 'softwear' ) ,
+			$menuTitle = __( 'Softwear', 'softwear' ) ,
 			$capability = 'manage_options' ,
 			$menuSlug = 'softwear_options' ,
-			$function = array(__CLASS__, 'pageIndex')
+			$function = array( __CLASS__, 'page_index' )
 		);
 	}
 
@@ -127,22 +127,22 @@ class Pronamic_Softwear_Plugin {
 	/**
 	 * Options page
 	 */
-	public static function pageIndex() {
-		include plugin_dir_path(self::$file) . '/admin/index.php';
+	public static function page_index() {
+		include plugin_dir_path( self::$file ) . '/admin/index.php';
 	}
 
 	/**
 	 * Datafeed page
 	 */
-	public static function pageDatafeed() {
-		include plugin_dir_path(self::$file) . '/admin/datafeed.php';
+	public static function page_datafeed() {
+		include plugin_dir_path( self::$file ) . '/admin/datafeed.php';
 	}
 
 	/**
 	 * Synchronize page
 	 */
-	public static function pageSynchronization() {
-		include plugin_dir_path(self::$file) . '/admin/synchronization.php';
+	public static function page_synchronization() {
+		include plugin_dir_path( self::$file ) . '/admin/synchronization.php';
 	}
 
 	/**
