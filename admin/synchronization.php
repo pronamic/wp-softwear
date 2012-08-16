@@ -4,10 +4,10 @@ global $woocommerce;
 
 ?>
 <div class="wrap">
-	<?php screen_icon('softwear'); ?>
+	<?php screen_icon( 'softwear' ); ?>
 
 	<h2>
-		<?php _e('Softwear Synchronization', 'softwear'); ?>
+		<?php _e( 'Softwear Synchronization', 'softwear' ); ?>
 	</h2>
 
 	<?php 
@@ -33,6 +33,7 @@ global $woocommerce;
 					<th scope="col"><?php _e('ID', 'softwear'); ?></th>
 					<th scope="col"><?php _e('Price', 'softwear'); ?></th>
 					<th scope="col"><?php _e('Stock', 'softwear'); ?></th>
+					<th scope="col"><?php _e('Synchronized', 'softwear'); ?></th>
 				</tr>
 			</thead>
 
@@ -59,6 +60,9 @@ global $woocommerce;
 					</td>
 					<td>
 						
+					</td>
+					<td>
+					
 					</td>
 					<td>
 					
@@ -95,12 +99,6 @@ global $woocommerce;
 					</td>
 					<td>
 						<?php echo $variation->id; ?>
-						
-						<?php 
-						
-						echo $synced ? '&#9991;' : '';
-						
-						?>
 					</td>
 					<td>
 						&euro;&nbsp;<?php echo number_format($variation->price, 2, ',', '.'); ?>
@@ -124,12 +122,15 @@ global $woocommerce;
 						
 						?>
 					</td>
+					<td>
+						<?php echo $synced ? __( 'Yes', 'softwear' ) : __( 'No', 'softwear' ); ?>
+					</td>
 				</tr>
 
 				<?php endforeach; ?>
 
 				<tr>
-					<td colspan="5">
+					<td colspan="6">
 						<?php 
 					
 						$woocommerce->clear_product_transients( $product->id ); 
