@@ -174,26 +174,6 @@ class Pronamic_Softwear_Plugin {
 	//////////////////////////////////////////////////
 
 	/**
-	 * Build an associative array from an array and map
-	 * 
-	 * @param array $array
-	 * @param array $map
-	 */
-	public static function buildAssociativeArray($array, $map) {
-		$result = array();
-
-		foreach($map as $i => $key) {
-			if(isset($array[$i])) {
-				$result[$key] = $array[$i];
-			}
-		}
-		
-		return $result;
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
 	 * Get product by SKU
 	 * 
 	 * @return 
