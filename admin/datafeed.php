@@ -15,7 +15,7 @@
 			<?php 
 			
 			sprintf(
-				__( 'The Softwear datafeed could not be loaded from the URL: %s', 'software' ) . 
+				__( 'The Softwear datafeed could not be loaded from the URL: %s', 'softwear' ) . 
 				sprintf( '<a href="%s">%s</a>', esc_attr( $url ), $url )
 			);
 			
