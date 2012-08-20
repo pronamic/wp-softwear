@@ -173,50 +173,6 @@ class Pronamic_Softwear_Plugin {
 
 	//////////////////////////////////////////////////
 
-	/**
-	 * Insert
-	 */
-	public static function insertImport($import) {
-		$result = wp_insert_post($import->post, true);
-
-		if(!is_wp_error($result)) {
-			$post_ID = $result;
-
-			foreach($import->meta as $key => $value) {
-				$r = update_post_meta($post_ID, $key, $value);
-			}
-
-			foreach($import->tax as $taxonomy => $terms) {
-				if(is_taxonomy_hierarchical($taxonomy)) {
-					$ids = array();
-
-					if(!is_array($terms)) {
-						$terms = explode(',', $terms);
-					}
-
-					foreach($terms as $term) {
-						$data = term_exists($term, $taxonomy);
-						if(empty($data)) {
-							$data = wp_insert_term($term, $taxonomy);
-						}
-
-						if(!empty($data) && !is_wp_error($data)) {
-							$ids[] = $data['term_id'];
-						}
-					}
-
-					$terms = $ids;
-				}
-
-				$r = wp_set_post_terms($post_ID, $terms, $taxonomy, false);
-			}
-		}
-
-		return $result;
-	}
-
-	//////////////////////////////////////////////////
-
 	public static function syncWooCommerceProduct(Pronamic_Softwear_WooCommerce_Product $product) {
 		$result = true;
 
