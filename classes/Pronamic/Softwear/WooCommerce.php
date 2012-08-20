@@ -14,10 +14,10 @@ class Pronamic_Softwear_WooCommerce {
 	 * 
 	 * @return array
 	 */
-	public static function getSkusMap() {
+	public static function get_skus_map() {
 		global $wpdb;
 		
-		$results = $wpdb->get_results("
+		$results = $wpdb->get_results( "
 			SELECT 
 				post_id , 
 				meta_value AS sku 
@@ -25,17 +25,17 @@ class Pronamic_Softwear_WooCommerce {
 				$wpdb->postmeta 
 			WHERE 
 				meta_key = '_sku';
-		");
+		" );
 		
-		$skusMap = array();
+		$skus_map = array();
 		
-		if($results) {
-			foreach($results as $result) {
-				$skusMap[$result->sku] = $result->post_id;
+		if ( $results ) {
+			foreach ( $results as $result ) {
+				$skus_map[$result->sku] = $result->post_id;
 			}
 		}
 
-		return $skusMap;
+		return $skus_map;
 	}
 
 	//////////////////////////////////////////////////
@@ -51,7 +51,7 @@ class Pronamic_Softwear_WooCommerce {
 		$products = array();
 		
 		// SKU's
-		$skus = self::getSkusMap();
+		$skus = self::get_skus_map();
 
 		// Shift the table head from the data array
 		$thead = array_shift($data);	
