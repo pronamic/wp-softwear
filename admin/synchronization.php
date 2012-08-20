@@ -13,7 +13,7 @@ global $woocommerce;
 	<?php 
 
 	$map = Pronamic_Softwear_Plugin::get_data_map();
-	$map = array_flip($map);
+	$map = array_flip( $map );
 
 	$data = Pronamic_Softwear_Plugin::get_data();
 
@@ -22,7 +22,7 @@ global $woocommerce;
 	<div>
 		<?php 
 
-		$products = Pronamic_Softwear_WooCommerce::transformDataToProducts($data, $map);
+		$products = Pronamic_Softwear_WooCommerce::transform_data_to_products($data, $map);
 		
 		?>
 		<table cellspacing="0" class="widefat fixed">

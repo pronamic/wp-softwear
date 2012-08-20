@@ -46,7 +46,7 @@ class Pronamic_Softwear_WooCommerce {
 	 * @param array $data
 	 * @return array
 	 */
-	public static function transformDataToProducts($data, $map) {
+	public static function transform_data_to_products( $data, $map ) {
 		// Products
 		$products = array();
 		
@@ -54,46 +54,46 @@ class Pronamic_Softwear_WooCommerce {
 		$skus = self::get_skus_map();
 
 		// Shift the table head from the data array
-		$thead = array_shift($data);	
+		$thead = array_shift( $data );	
 		
 		// Data loop
-		foreach($data as $row) {
-			$dataRow = new Pronamic_Softwear_DataRow($row, $map);
+		foreach ( $data as $row ) {
+			$data_row = new Pronamic_Softwear_DataRow( $row, $map );
 
-			$sku = $dataRow->get('sku_parent');
+			$sku = $data_row->get( 'sku_parent' );
 
-			if(!empty($sku)) {
-				if(!isset($products[$sku])) {
+			if ( ! empty( $sku ) ) {
+				if ( ! isset( $products[$sku] ) ) {
 					$product = new Pronamic_Softwear_WooCommerce_Product();
 					
-					if(isset($skus[$sku])) {
+					if ( isset( $skus[$sku] ) ) {
 						$product->id = $skus[$sku];
 					}
 
 					$product->sku = $sku;
-					$product->title = $dataRow->get('post_title');
+					$product->title = $data_row->get( 'post_title' );
 					
-					$category = trim($dataRow->get('product_cat'));
-					if(!empty($category)) {
-						$product->addTerms('product_cat', $category);
+					$category = trim( $data_row->get( 'product_cat' ) );
+					if ( ! empty( $category ) ) {
+						$product->addTerms( 'product_cat', $category );
 					}
 		
-					$brand = trim($dataRow->get('pa_merk'));
-					if(!empty($brand)) {
-						$product->addTerms('pa_merk', $brand);
-						$product->setAttribute('pa_merk', $brand);
+					$brand = trim( $data_row->get( 'pa_merk' ) );
+					if ( ! empty( $brand ) ) {
+						$product->addTerms( 'pa_merk', $brand );
+						$product->setAttribute( 'pa_merk', $brand );
 					}
 		
-					$material = trim($dataRow->get('pa_materiaal'));
-					if(!empty($material)) {
-						$product->addTerms('pa_materiaal', $material);
-						$product->setAttribute('pa_materiaal', $material);
+					$material = trim( $data_row->get( 'pa_materiaal' ) );
+					if ( ! empty( $material ) ) {
+						$product->addTerms( 'pa_materiaal', $material );
+						$product->setAttribute( 'pa_materiaal', $material );
 					}
 		
-					$target = trim($dataRow->get('pa_doelgroep'));
-					if(!empty($target)) {
-						$product->addTerms('pa_doelgroep', $target);
-						$product->setAttribute('pa_doelgroep', $target);
+					$target = trim( $data_row->get( 'pa_doelgroep' ) );
+					if ( ! empty( $target ) ) {
+						$product->addTerms( 'pa_doelgroep', $target );
+						$product->setAttribute( 'pa_doelgroep', $target );
 					}
 		
 					$products[$sku] = $product;
@@ -102,22 +102,22 @@ class Pronamic_Softwear_WooCommerce {
 				$product = $products[$sku];
 				
 				// Variation
-				$sku = $dataRow->get('sku_variation');
+				$sku = $data_row->get( 'sku_variation' );
 
-				if(!empty($sku)) {
+				if ( ! empty( $sku ) ) {
 					$variation = new Pronamic_Softwear_WooCommerce_ProductVariation();
 						
-					if(isset($skus[$sku])) {
+					if ( isset( $skus[$sku] ) ) {
 						$variation->id = $skus[$sku];
 					}
 	
 					$variation->sku = $sku;
-					$variation->price = (float) trim($dataRow->get('price'));
-					$variation->stock = (int) trim($dataRow->get('stock'));
-					$variation->setAttribute('pa_maat', $dataRow->get('pa_maat'));
-					$variation->setAttribute('pa_kleur', $dataRow->get('pa_kleur'));
+					$variation->price = (float) trim( $data_row->get( 'price' ) );
+					$variation->stock = (int) trim( $data_row->get( 'stock' ) );
+					$variation->setAttribute( 'pa_maat', $data_row->get( 'pa_maat' ) );
+					$variation->setAttribute( 'pa_kleur', $data_row->get( 'pa_kleur' ) );
 			
-					$product->addVariation($variation);
+					$product->addVariation( $variation );
 				}
 			}
 		}
