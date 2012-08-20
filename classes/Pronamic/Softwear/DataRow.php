@@ -13,18 +13,18 @@ class Pronamic_Softwear_DataRow {
 	
 	private $map;
 
-	public function __construct($data, $map) {
+	public function __construct( $data, $map ) {
 		$this->data = $data;
 		$this->map = $map;
 	}
 
-	public function get($key) {
+	public function get( $key ) {
 		$result = null;
 
-		if(isset($this->map[$key])) {
+		if ( isset( $this->map[$key] ) ) {
 			$index = $this->map[$key];
 
-			if(isset($this->data[$index])) {
+			if ( isset( $this->data[$index] ) ) {
 				$result = $this->data[$index];
 			}
 		}

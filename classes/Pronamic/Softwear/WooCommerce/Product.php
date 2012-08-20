@@ -80,7 +80,7 @@ class Pronamic_Softwear_WooCommerce_Product {
 
 	//////////////////////////////////////////////////
 
-	public function getTitle() {
+	public function get_title() {
 		return $this->title;
 	}
 
@@ -88,28 +88,28 @@ class Pronamic_Softwear_WooCommerce_Product {
 	// Taxonomies
 	//////////////////////////////////////////////////
 
-	public function addTerms($taxonmy, $terms) {
-		if(!isset($this->taxonomies[$taxonmy])) {
+	public function add_terms( $taxonmy, $terms ) {
+		if ( ! isset( $this->taxonomies[$taxonmy] ) ) {
 			$this->taxonomies[$taxonmy] = array(); 
 		}
 
-		if(!is_array($terms)) {
-			$terms = array_map('trim', explode(',', $terms));
+		if ( ! is_array( $terms ) ) {
+			$terms = array_map( 'trim', explode( ',', $terms ) );
 		}
 
 		$this->taxonomies[$taxonmy] += $terms;
 	}
 
-	public function getTaxonomies() {
+	public function get_taxonomies() {
 		$taxonomies = $this->taxonomies;
 
 		// Type
-		$taxonomies['product_type'] = array('variable'); 
+		$taxonomies['product_type'] = array( 'variable' ); 
 
 		// Variations taxonomies
-		foreach($this->variations as $variation) {
-			foreach($variation->attributes as $key => $value) {
-				if(!isset($taxonomies[$key])) {
+		foreach ( $this->variations as $variation ) {
+			foreach ( $variation->attributes as $key => $value ) {
+				if ( ! isset( $taxonomies[$key] ) ) {
 					$taxonomies[$key] = array();
 				}
 
@@ -124,7 +124,7 @@ class Pronamic_Softwear_WooCommerce_Product {
 	// Attributes
 	//////////////////////////////////////////////////
 
-	public function setAttribute($key, $value) {
+	public function set_attribute( $key, $value ) {
 		$this->attributes[$key] = $value;
 	}
 	
@@ -132,7 +132,7 @@ class Pronamic_Softwear_WooCommerce_Product {
 	// Variations
 	//////////////////////////////////////////////////
 
-	public function addVariation(Pronamic_Softwear_WooCommerce_ProductVariation $variation) {
+	public function add_variation( Pronamic_Softwear_WooCommerce_ProductVariation $variation ) {
 		$variation->parent = $this;
 
 		$this->variations[] = $variation;
@@ -140,7 +140,7 @@ class Pronamic_Softwear_WooCommerce_Product {
 	
 	//////////////////////////////////////////////////
 
-	public function getPost() {
+	public function get_post() {
 		$post = array();
 
 		$post['post_type'] = 'product';
@@ -150,7 +150,7 @@ class Pronamic_Softwear_WooCommerce_Product {
 		return $post;
 	}
 
-	public function getMeta() {
+	public function get_meta() {
 		$meta = array();
 
 		$meta['_sku'] = $this->sku;
@@ -163,7 +163,7 @@ class Pronamic_Softwear_WooCommerce_Product {
 		// Normal attributes
 		$position = 0;
 
-		foreach($this->attributes as $key => $value) {
+		foreach ( $this->attributes as $key => $value ) {
 			$meta['_product_attributes'][$key] = array(
 				'name' => $key ,
 				'value' => '' , 
@@ -179,9 +179,9 @@ class Pronamic_Softwear_WooCommerce_Product {
 		// Variations attributes
 		$position = 0;
 
-		foreach($this->variations as $variation) {
-			foreach($variation->attributes as $key => $value) {
-				if(!isset($meta['_product_attributes'][$key])) {
+		foreach ( $this->variations as $variation ) {
+			foreach ( $variation->attributes as $key => $value ) {
+				if ( ! isset( $meta['_product_attributes'][$key] ) ) {
 					$meta['_product_attributes'][$key] = array(
 						'name' => $key ,
 						'value' => '',

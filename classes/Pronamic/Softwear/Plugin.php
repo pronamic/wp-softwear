@@ -173,41 +173,46 @@ class Pronamic_Softwear_Plugin {
 
 	//////////////////////////////////////////////////
 
-	public static function syncWooCommerceProduct(Pronamic_Softwear_WooCommerce_Product $product) {
+	/**
+	 * Synchronize WooCommerce product
+	 * 
+	 * @param Pronamic_Softwear_WooCommerce_Product $product
+	 */
+	public static function sync_product( Pronamic_Softwear_WooCommerce_Product $product ) {
 		$result = true;
 
-		if(empty($product->id)) {
-			$result = self::insertWooCommerceProduct($product);
+		if ( empty( $product->id ) ) {
+			$result = self::insert_product( $product );
 		} 
 
 		return $result;
 	}
 
-	public static function insertWooCommerceProduct(Pronamic_Softwear_WooCommerce_Product $product) {
-		$result = wp_insert_post($product->getPost(), true);
+	public static function insert_product( Pronamic_Softwear_WooCommerce_Product $product ) {
+		$result = wp_insert_post( $product->get_post(), true );
 
-		if(!is_wp_error($result)) {
+		if ( ! is_wp_error( $result ) ) {
 			$product->id = $result;
 	
-			foreach($product->getMeta() as $key => $value) {
-				$r = update_post_meta($product->id, $key, $value);
+			foreach ( $product->get_meta() as $key => $value ) {
+				$r = update_post_meta( $product->id, $key, $value );
 			}
 	
-			foreach($product->getTaxonomies() as $taxonomy => $terms) {
-				if(is_taxonomy_hierarchical($taxonomy)) {
+			foreach ( $product->get_taxonomies() as $taxonomy => $terms ) {
+				if ( is_taxonomy_hierarchical( $taxonomy ) ) {
 					$ids = array();
 	
-					if(!is_array($terms)) {
-						$terms = explode(',', $terms);
+					if ( ! is_array( $terms ) ) {
+						$terms = explode( ',', $terms );
 					}
 	
-					foreach($terms as $term) {
-						$data = term_exists($term, $taxonomy);
-						if(empty($data)) {
-							$data = wp_insert_term($term, $taxonomy);
+					foreach ( $terms as $term ) {
+						$data = term_exists( $term, $taxonomy );
+						if ( empty( $data ) ) {
+							$data = wp_insert_term( $term, $taxonomy );
 						}
 	
-						if(!empty($data) && !is_wp_error($data)) {
+						if ( ! empty( $data ) && ! is_wp_error( $data ) ) {
 							$ids[] = $data['term_id'];
 						}
 					}
@@ -215,31 +220,10 @@ class Pronamic_Softwear_Plugin {
 					$terms = $ids;
 				}
 	
-				$r = wp_set_post_terms($product->id, $terms, $taxonomy, false);
+				$r = wp_set_post_terms( $product->id, $terms, $taxonomy, false );
 			}
 		}
 
 		return $result;
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
-	 * Insert
-	 */
-	public static function insertWooCommerceVariantProduct($import) {
-		$result = wp_insert_post($import->post, true);
-
-		if(!is_wp_error($result)) {
-			$post_ID = $result;
-
-			foreach($import->meta as $key => $value) {
-				update_post_meta($post_ID, $key, $value);
-			}
-
-			foreach($import->tax as $tax => $terms) {
-				wp_set_post_terms($post_ID, $terms, $tax, false);
-			}
-		}
 	}
 }

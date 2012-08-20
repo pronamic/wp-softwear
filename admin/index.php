@@ -91,7 +91,7 @@
 						
 					), 'objects');
 					
-					foreach($taxonomies as $key => $taxonomy) {
+					foreach ( $taxonomies as $key => $taxonomy ) {
 						$map_fields['Terms'][$key] = $taxonomy->labels->singular_name;
 					}
 	

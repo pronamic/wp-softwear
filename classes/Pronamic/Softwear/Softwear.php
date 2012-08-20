@@ -17,24 +17,24 @@ class Pronamic_Softwear_Softwear {
 	 */
 	public static function get_data_from_url( $url ) {
 		$data = false;
-		
-		// Get URL
-		$response = wp_remote_get($url);
 
-		if(!is_wp_error($response)) {
+		// Get URL
+		$response = wp_remote_get( $url );
+
+		if ( ! is_wp_error( $response ) ) {
 			$data = array();
 
 			$body = $response['body'];
-			$body = utf8_encode($body);
+			$body = utf8_encode( $body );
 
-			$lines = explode("\n", $body);
-			foreach($lines as $line) {
-				$line = trim($line);
+			$lines = explode( "\n", $body );
+			foreach ( $lines as $line ) {
+				$line = trim( $line );
 
-				$data[] = explode(';', $line);
+				$data[] = explode( ';', $line );
 			}
 		}
-		
+
 		return $data;
 	}
 }

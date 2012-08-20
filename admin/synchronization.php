@@ -17,42 +17,46 @@ global $woocommerce;
 
 	$data = Pronamic_Softwear_Plugin::get_data();
 
-	if($data !== false): ?>
+	if( $data !== false ): ?>
 
 	<div>
 		<?php 
 
-		$products = Pronamic_Softwear_WooCommerce::transform_data_to_products($data, $map);
+		$products = Pronamic_Softwear_WooCommerce::transform_data_to_products( $data, $map );
 		
 		?>
 		<table cellspacing="0" class="widefat fixed">
 			<thead>
 				<tr>
-					<th scope="col"><?php _e('SKU', 'softwear'); ?></th>
-					<th scope="col"><?php _e('Title', 'softwear'); ?></th>
-					<th scope="col"><?php _e('ID', 'softwear'); ?></th>
-					<th scope="col"><?php _e('Price', 'softwear'); ?></th>
-					<th scope="col"><?php _e('Stock', 'softwear'); ?></th>
-					<th scope="col"><?php _e('Synchronized', 'softwear'); ?></th>
+					<th scope="col"><?php _e( 'SKU', 'softwear' ); ?></th>
+					<th scope="col"><?php _e( 'Title', 'softwear' ); ?></th>
+					<th scope="col"><?php _e( 'ID', 'softwear' ); ?></th>
+					<th scope="col"><?php _e( 'Price', 'softwear' ); ?></th>
+					<th scope="col"><?php _e( 'Stock', 'softwear' ); ?></th>
+					<th scope="col"><?php _e( 'Synchronized', 'softwear' ); ?></th>
 				</tr>
 			</thead>
 
 			<tbody>
 				
-				<?php foreach($products as $product): ?>
+				<?php foreach ( $products as $product ): ?>
 				
 				<tr style="font-weight: bold;">
-					<?php $synced = Pronamic_Softwear_Plugin::syncWooCommerceProduct($product); ?>
+					<?php 
+					
+					$synced = Pronamic_Softwear_Plugin::sync_product( $product );
+					
+					?>
 					<td>
 						<?php echo $product->sku; ?>
 					</td>
 					<td>
-						<?php echo $product->getTitle(); ?>
+						<?php echo $product->get_title(); ?>
 					</td>
 					<td>
-						<?php if(!empty($product->id)): ?>
+						<?php if ( ! empty( $product->id ) ): ?>
 
-						<a href="<?php echo get_permalink($product->id); ?>">
+						<a href="<?php echo get_permalink( $product->id ); ?>">
 							<?php echo $product->id; ?>
 						</a>
 
@@ -69,24 +73,24 @@ global $woocommerce;
 					</td>
 				</tr>
 				
-				<?php if(false): ?>
+				<?php if ( false ): ?>
 				
 				<tr>
 					<td colspan="5">
-						<?php $taxonomies = $product->getTaxonomies(); ?>
+						<?php $taxonomies = $product->get_taxonomies(); ?>
 
-						<textarea rows="5" cols="60"><?php var_dump($taxonomies); ?></textarea>
+						<textarea rows="5" cols="60"><?php var_dump( $taxonomies ); ?></textarea>
 					</td>
 				</tr>
 				
 				<?php endif; ?>
 
-				<?php foreach($product->variations as $variation): ?>
+				<?php foreach ( $product->variations as $variation ): ?>
 
 				<tr>
 					<?php 
 					
-					$synced = Pronamic_Softwear_Plugin::syncWooCommerceProduct($variation); 
+					$synced = Pronamic_Softwear_Plugin::sync_product( $variation );
 					
 					$woocommerce->clear_product_transients( $variation->id ); 
 					
@@ -95,18 +99,18 @@ global $woocommerce;
 						<?php echo $variation->sku; ?>
 					</td>
 					<td>
-						<?php echo $variation->getTitle(); ?>
+						<?php echo $variation->get_title(); ?>
 					</td>
 					<td>
 						<?php echo $variation->id; ?>
 					</td>
 					<td>
-						&euro;&nbsp;<?php echo number_format($variation->price, 2, ',', '.'); ?>
+						&euro;&nbsp;<?php echo number_format( $variation->price, 2, ',', '.' ); ?>
 						
 						<?php 
-						
-						$result = update_post_meta($variation->id, '_price', $variation->price);
-						
+
+						$result = update_post_meta( $variation->id, '_price', $variation->price );
+
 						echo $result !== false ? '&#9991;' : '';
 						
 						?>
@@ -116,7 +120,7 @@ global $woocommerce;
 						
 						<?php 
 						
-						$result = update_post_meta($variation->id, '_stock', $variation->stock);
+						$result = update_post_meta( $variation->id, '_stock', $variation->stock );
 						
 						echo $result !== false ? '&#9991;' : '';
 						
