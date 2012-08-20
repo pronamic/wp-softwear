@@ -174,34 +174,6 @@ class Pronamic_Softwear_Plugin {
 	//////////////////////////////////////////////////
 
 	/**
-	 * Get product by SKU
-	 * 
-	 * @return 
-	 */
-	public static function getWooCommerceProductBySku($sku, $type) {
-		$product = null;
-
-		if(!empty($sku)) {
-			$products = get_posts(array(
-				'post_type' => $type , 
-				'posts_per_page' => -1 , 
-				'meta_query' => array(
-					array(
-						'key' => '_sku' ,  
-						'value' => $sku 
-					)
-				)
-			));
-
-			$product = array_pop($products);
-		}
-
-		return $product;
-	}
-
-	//////////////////////////////////////////////////
-
-	/**
 	 * Insert
 	 */
 	public static function insertImport($import) {
