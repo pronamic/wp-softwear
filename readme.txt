@@ -29,6 +29,13 @@ WordPress installation and then activate the Plugin from Plugins page.
 *	Initial release
 
 
+== Queries ==
+
+DELETE FROM wp_posts WHERE post_type = 'product';
+DELETE FROM wp_posts WHERE post_type = 'product_variation';
+DELETE FROM wp_postmeta WHERE post_id NOT IN ( SELECT ID FROM wp_posts );
+
+
 == Links ==
 
 *	[Pronamic](http://pronamic.eu/)
