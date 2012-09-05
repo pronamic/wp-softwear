@@ -30,6 +30,8 @@ class Pronamic_Softwear_Plugin {
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
 		
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
+		
+		register_activation_hook( $file, array( __CLASS__, 'activation' ) );
 	}
 
 	//////////////////////////////////////////////////
@@ -81,7 +83,7 @@ class Pronamic_Softwear_Plugin {
 		add_menu_page(
 			$pageTitle = __( 'Softwear', 'softwear' ) , 
 			$menuTitle = __( 'Softwear', 'softwear' ) , 
-			$capability = 'administrator' , 
+			$capability = 'softwear_manage_settings' , 
 			$menuSlug = 'softwear' , 
 			$function = array( __CLASS__, 'page_index' ) , 
 			$iconUrl = plugins_url( 'images/icon-16x16.png', self::$file )
@@ -91,7 +93,7 @@ class Pronamic_Softwear_Plugin {
 			$parentSlug = 'softwear' , 
 			$pageTitle = __( 'Softwear Datafeed', 'softwear' ) , 
 			$menuTitle = __( 'Datafeed', 'softwear' ) , 
-			$capability = 'administrator' , 
+			$capability = 'softwear_view_datafeed' , 
 			$menuSlug = 'softwear_datafeed' , 
 			$function = array( __CLASS__, 'page_datafeed' )
 		);
@@ -100,7 +102,7 @@ class Pronamic_Softwear_Plugin {
 			$parentSlug = 'softwear' , 
 			$pageTitle = __( 'Softwear Synchronization', 'softwear' ) , 
 			$menuTitle = __( 'Synchronization', 'softwear' ) , 
-			$capability = 'administrator' , 
+			$capability = 'softwear_view_synchronization' , 
 			$menuSlug = 'softwear_synchronization' , 
 			$function = array( __CLASS__, 'page_synchronization' )
 		);
@@ -135,6 +137,8 @@ class Pronamic_Softwear_Plugin {
 	 * Datafeed page
 	 */
 	public static function page_datafeed() {
+		$url = get_option( 'softwear_datafeed_url' );
+		
 		include plugin_dir_path( self::$file ) . '/admin/datafeed.php';
 	}
 
@@ -145,6 +149,19 @@ class Pronamic_Softwear_Plugin {
 		include plugin_dir_path( self::$file ) . '/admin/synchronization.php';
 	}
 
+	//////////////////////////////////////////////////
+	
+	/**
+	 * Add role capabilities on activation
+	 */
+	public static function activation() {
+		$role = get_role( 'administrator' );
+		
+		$role->add_cap( 'softwear_view_datafeed' );
+		$role->add_cap( 'softwear_view_synchronization' );
+		$role->add_cap( 'softwear_manage_settings' );
+	}
+	
 	//////////////////////////////////////////////////
 
 	/**

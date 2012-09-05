@@ -14,12 +14,23 @@
 		<p>
 			<?php 
 			
-			sprintf(
-				__( 'The Softwear datafeed could not be loaded from the URL: %s', 'softwear' ) . 
-				sprintf( '<a href="%s">%s</a>', esc_attr( $url ), $url )
-			);
+			if( ! empty( $url ) ) :
 			
+				echo sprintf(
+					__( 'The Softwear datafeed could not be loaded from the URL: %s', 'softwear' ),
+					sprintf( '<a href="%s">%s</a>', esc_attr( $url ), $url )
+				);
+				
+			else :
+				
+				_e( 'The Softwear datafeed could not be loaded since no URL is set.', 'softwear' );
+				
+			endif;
+					
 			?>
+							
+			<a href="<?php echo admin_url() . 'admin.php?page=softwear'; ?>"><?php _e( 'Settings' , 'softwear' ); ?> &raquo;</a>
+			
 		</p>
 
 	<?php else: ?>
